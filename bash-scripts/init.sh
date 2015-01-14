@@ -1,5 +1,6 @@
 echo "generating git hooks..."
-echo "./bash-scripts/deploy.sh" > ../.git/hooks/pre-commit
+echo "#!/bin/sh" > ../.git/hooks/pre-commit
+echo "./bash-scripts/deploy.sh" >> ../.git/hooks/pre-commit
 
 echo "reset posts modify time..."
 ./tweak-posts-modify-time.sh
