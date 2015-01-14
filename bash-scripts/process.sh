@@ -81,3 +81,7 @@ ls tag-*.txt | while read filename; do
 done
 
 rm tag-*.txt
+
+pwd
+cd ..
+git add --all
