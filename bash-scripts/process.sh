@@ -77,7 +77,7 @@ done
 
 ls tag-*.txt | while read filename; do
 	echo "generating $filename.json"
-	../bash-scripts/concat.sh $filename
+	../bash-scripts/concat-tag.sh $filename
 done
 
 rm tag-*.txt
