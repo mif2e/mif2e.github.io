@@ -72,7 +72,7 @@ var Blog = angular.module('Blog', ['ngRoute'])
 				if(blogData.postList){
 					resolve(blogData.postList)
 				}else{
-					$http.get('posts/test/g/all.json').success(function(postList){
+					$http.get('posts/g/all.json').success(function(postList){
 						blogData.postList = postList
 						resolve(postList)
 						postList.forEach(function(post){
@@ -84,14 +84,14 @@ var Blog = angular.module('Blog', ['ngRoute'])
 		},
 		tagList:function(tag){
 			return $q(function(resolve){
-				$http.get('posts/test/tag/tag-' + tag + '.json').success(function(postList){
+				$http.get('posts/tag/tag-' + tag + '.json').success(function(postList){
 					resolve(postList)
 				})
 			})
 		},
 		categoryList:function(category){
 			return $q(function(resolve){
-				$http.get('posts/test/category/category-' + category + '.json').success(function(postList){
+				$http.get('posts/category/category-' + category + '.json').success(function(postList){
 					resolve(postList)
 				})
 			})
@@ -99,16 +99,16 @@ var Blog = angular.module('Blog', ['ngRoute'])
 		getPost:function(file){
 			return $q(function(resolve){
 				if(!blogData.posts[file]){
-					$http.get('/posts/test/g/' + file + '.md.json').success(function(post){
+					$http.get('/posts/g/' + file + '.md.json').success(function(post){
 						blogData.posts[file] = post
 					}).then(function(){
-						$http.get('/posts/test/' + file + '.md').success(function (content){
+						$http.get('/posts/' + file + '.md').success(function (content){
 							blogData.posts[file].content = content.replace(/[\s\S]*\-\-\-/igm, '')
 							resolve(blogData.posts[file])
 						})
 					})
 				}else if(!blogData.posts[file].content){
-					$http.get('/posts/test/' + file + '.md').success(function (content){
+					$http.get('/posts/' + file + '.md').success(function (content){
 						blogData.posts[file].content = content.replace(/[\s\S]*\-\-\-/igm, '')
 						resolve(blogData.posts[file])
 					})
